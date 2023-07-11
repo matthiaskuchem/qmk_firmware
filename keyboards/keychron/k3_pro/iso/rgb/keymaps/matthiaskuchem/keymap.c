@@ -25,7 +25,9 @@ enum layers{
   MAC_NEO_L1,
   MAC_NEO_L3,
   MAC_NEO_L4,
-  FN
+  MAC_FN,
+  WIN_QWERTZ,
+  WIN_FN
 };
 
 enum custom_keycodes {
@@ -66,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         DE_X,           DE_V,      DE_L,      DE_C,      DE_W,      DE_K,      DE_H,      DE_G,      DE_F,         DE_Q,           DE_SS,       MAC_NEO_ACC,    KC_ENT,           KC_PGDN,
     MO(MAC_NEO_L3), DE_U,           DE_I,      DE_A,      DE_E,      DE_O,      DE_S,      DE_N,      DE_R,      DE_T,         DE_D,           DE_Y,        MO(MAC_NEO_L3),                   KC_HOME,
     KC_LSFT,        MO(MAC_NEO_L4), DE_UDIA,   DE_ODIA,   DE_ADIA,   DE_P,      DE_Z,      DE_B,      DE_M,      MAC_NEO_COMM, MAC_NEO_DOT,    DE_J,        KC_RSFT,                 KC_UP,   KC_END,
-    KC_LCMD,        KC_LOPT,        KC_LCTL,                                    KC_SPC,                                        MO(MAC_NEO_L4), MO(FN),      KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
+    KC_LCMD,        KC_LOPT,        KC_LCTL,                                    KC_SPC,                                        MO(MAC_NEO_L4), MO(MAC_FN),  KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
 
 // Not working on L3: turn dead key, super 1-3, °-accent, ſ, dead /
 [MAC_NEO_L3] = LAYOUT_iso_85(
@@ -75,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS,  A(DE_DOT), S(DE_MINS), A(DE_5),  A(DE_6),   MAC_NEO_CIRC,  DE_EXLM,       DE_CIRC,  S(DE_CIRC), DE_EQL,     DE_AMPR,      KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
     KC_TRNS,  LSA(DE_7), S(DE_7),    A(DE_8),  A(DE_9),   S(DE_PLUS),    S(DE_SS),      S(DE_8),  S(DE_9),    DE_MINS,    S(DE_DOT),    A(DE_L),  KC_TRNS,                      KC_TRNS,
     KC_TRNS,  KC_TRNS,   DE_HASH,    DE_DLR,   A(DE_7),   MAC_NEO_TILDE, MAC_NEO_GRAVE, DE_PLUS,  S(DE_5),    S(DE_2),    DE_QUOT,      DE_SCLN,  KC_TRNS,            KC_TRNS,  KC_TRNS,
-    KC_TRNS,  KC_TRNS,   KC_TRNS,                                        KC_TRNS,                                    KC_TRNS,      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
+    KC_TRNS,  KC_TRNS,   KC_TRNS,                                        KC_TRNS,                                         KC_TRNS,      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
 
 // mostly navigation and numpad implemented
 [MAC_NEO_L4] = LAYOUT_iso_85(
@@ -86,13 +88,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS,  KC_TRNS,       KC_TRNS,  KC_TAB,   KC_TRNS,  KC_ENT,         KC_TRNS,  S(DE_DOT), DE_1,     DE_2,     DE_3,     DE_SCLN,  KC_TRNS,            KC_TRNS,  KC_TRNS,
     KC_TRNS,  KC_TRNS,       KC_TRNS,                                      DE_0,                                    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
 
-[FN] = LAYOUT_iso_85(
-    KC_TRNS,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_TRNS,  KC_TRNS,  RGB_TOG,
-    KC_TRNS,  BT_HST1,  BT_HST2,  BT_HST3,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
-    RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
-    KC_TRNS,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,            KC_TRNS,
-    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  BAT_LVL,  NK_TOGG,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,
-    KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                                KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
+[MAC_FN] = LAYOUT_iso_85(
+    KC_TRNS,  KC_F1,    KC_F2,    KC_F3,    KC_F4,          KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_TRNS,  KC_TRNS,  RGB_TOG,
+    KC_TRNS,  BT_HST1,  BT_HST2,  BT_HST3,  KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
+    RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,        RGB_SPI,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
+    KC_TRNS,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,        RGB_SPD,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,            KC_TRNS,
+    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  DF(WIN_QWERTZ), KC_TRNS,  BAT_LVL,  NK_TOGG,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,
+    KC_TRNS,  KC_TRNS,  KC_TRNS,                                      KC_TRNS,                                KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
+
+[WIN_QWERTZ] = LAYOUT_iso_85(
+     KC_ESC,   KC_BRID,  KC_BRIU,  KC_TASK,  KC_FILE,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,    KC_VOLU,  KC_PSCR,  KC_DEL,   RGB_MOD,
+     KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,    KC_EQL,   KC_BSPC,            KC_PGUP,
+     KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,    KC_RBRC,  KC_ENT,             KC_PGDN,
+     KC_CAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,              KC_BSLS,            KC_HOME,
+     KC_LSFT,  KC_NUBS,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,  KC_UP,    KC_END,
+     KC_LCTL,  KC_LGUI,  KC_LALT,                                KC_SPC,                                 KC_RALT,  MO(WIN_FN), KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
+
+[WIN_FN] = LAYOUT_iso_85(
+     KC_TRNS,  KC_F1,    KC_F2,          KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_TRNS,  KC_TRNS,  RGB_TOG,
+     KC_TRNS,  BT_HST1,  BT_HST2,        BT_HST3,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
+     RGB_TOG,  RGB_MOD,  RGB_VAI,        RGB_HUI,  RGB_SAI,  RGB_SPI,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
+     KC_TRNS,  RGB_RMOD, RGB_VAD,        RGB_HUD,  RGB_SAD,  RGB_SPD,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,            KC_TRNS,
+     KC_TRNS,  KC_TRNS,  DF(MAC_NEO_L1), KC_TRNS,  KC_TRNS,  KC_TRNS,  BAT_LVL,  NK_TOGG,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,
+     KC_TRNS,  KC_TRNS,  KC_TRNS,                                      KC_TRNS,                                KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS)
 };
 
 // Runs for each key down or up event.
@@ -100,8 +118,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
      uint8_t active_modifiers = get_mods();
      uint8_t shifted = active_modifiers & MODS_SHIFT;
 
-     // only act on keys pressed and ignore FN-layer
-     if(!record->event.pressed || IS_LAYER_ON(FN)) {
+     // only act on keys pressed and ignore FN-layers
+     if(!record->event.pressed || IS_LAYER_ON(MAC_FN) || IS_LAYER_ON(WIN_FN)) {
           return true;
      }
 

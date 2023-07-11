@@ -5,6 +5,20 @@ This fork is based on the [Keychron/qmk_firmware](https://github.com/Keychron/qm
 
 ## K3 Pro
 
-There is a keymap “matthiaskuchem” for keychron/k3_pro/iso/rgb which implements the Neo Layout for an iPad, as far as this is possilbe. It is limited to the characters available on the german mac keyboard, because the iPad does not support Unicode input at all. To use it, you need to set the keyboard layout to german in the iPadOS. It should work the same with macOS, but I didn't test it.
+The keymap is implemented as “matthiaskuchem” for keychron/k3_pro/iso/rgb.
 
 The layer locking is not implemented on purpose, this could be done though. See the [qmk-neo2](https://github.com/yeldiRium/qmk-neo2) Repository by [yeldiRium](https://github.com/yeldiRium) for reference.
+
+### Implemented Layers
+
+You need to set the keyboard layout in the respective OS to German.
+
+#### Mac Neo (intended for iPad)
+
+Switch to this layer with the hardware switch on the keyboard (Mac/iOS) or by pressing `fn + y`.
+
+It does only support the characters on the german keyboard itself, because the iPad does not support any kind of UTF keycode input. This layer was written and tested on iPad, but should work on macOS too.
+
+#### Win QWERTZ
+
+Switch to this layer with the hardware switch on the keyboard (Win/Android) or by pressing `fn + c`.
